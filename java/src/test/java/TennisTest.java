@@ -58,7 +58,7 @@ public class TennisTest {
             if (i < player2Points)
                 game.addPoint("player2");
         }
-        assertEquals(expectedScore, game.getScoreString());
+        assertEquals(expectedScore, game.getScoreGame());
     }
 
     @ParameterizedTest

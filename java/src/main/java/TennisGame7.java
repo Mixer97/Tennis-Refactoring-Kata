@@ -18,7 +18,7 @@ public class TennisGame7 implements TennisGame {
 
     }
 
-    public String getScoreString()
+    public String getScoreGame()
     {
         String result = "Current score: ";
 

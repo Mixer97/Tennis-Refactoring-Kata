@@ -19,7 +19,7 @@ public class TennisGame4 implements TennisGame {
     }
 
     @java.lang.Override
-    public String getScoreString() {
+    public String getScoreGame() {
         TennisResult result = new Deuce(
                 this, new GameServer(
                         this, new GameReceiver(

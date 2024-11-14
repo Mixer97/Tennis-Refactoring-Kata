@@ -14,7 +14,7 @@ public class TennisGame2 implements TennisGame
         this.player2Name = player2Name;
     }
 
-    public String getScoreString(){
+    public String getScoreGame(){
         String score = "";
         if (P1point == P2point && P1point < 4)
         {

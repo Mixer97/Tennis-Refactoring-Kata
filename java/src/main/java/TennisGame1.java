@@ -12,7 +12,7 @@ public class TennisGame1 implements TennisGame {
         this.player2Name = player2Name;
     }
 
-    // Point set method
+    // Add point to player
     public void addPoint(String playerName) {
         if (playerName.equals(player1Name))
             p1_score += 1;
@@ -20,20 +20,21 @@ public class TennisGame1 implements TennisGame {
             p2_score += 1;
     }
 
-    // Point get method
-    public String getScoreString() {
+    // get the score of the game
+    public String getScoreGame() {
         StringBuilder score;
-        if (p1_score == p2_score) {
+        if (p1_score == p2_score) {     // game in progress and parity case
             score = getScoreParity();
-        } else if (p1_score >= 4 || p2_score >= 4) {
+        } else if (p1_score >= 4 || p2_score >= 4) {    // game ended in a win case
             int minusResult = p1_score - p2_score;
             score = getScoreWin(minusResult);
-        } else {
+        } else {                                    // game in progress and not in parity case
             score = getScoreNormalCase();
         }
         return score.toString();
     }
 
+    // method to get the winner of the game
     private StringBuilder getScoreWin(int minusResult) {
         StringBuilder score;
         score = new StringBuilder(switch (minusResult) {
@@ -47,6 +48,7 @@ public class TennisGame1 implements TennisGame {
         return score;
     }
 
+    // method to get the parity score
     private StringBuilder getScoreParity() {
         StringBuilder score;
         score = new StringBuilder(switch (p1_score) {
@@ -58,15 +60,17 @@ public class TennisGame1 implements TennisGame {
         return score;
     }
 
+    // method to get the score in a non parity case
     private StringBuilder getScoreNormalCase() {
         StringBuilder score = new StringBuilder();
-        getPlayerScoreAndAppend(score, p1_score);
+        getScorePlayerAndAppend(score, p1_score);
         score.append("-");
-        getPlayerScoreAndAppend(score, p2_score);
+        getScorePlayerAndAppend(score, p2_score);
         return score;
     }
 
-    private static void getPlayerScoreAndAppend(StringBuilder score, int tempScore) {
+    // helper method that gets the player score and appends it to the variable "StringBuilder score"
+    private static void getScorePlayerAndAppend(StringBuilder score, int tempScore) {
         switch (tempScore) {
             case 0 -> score.append("Love");
             case 1 -> score.append("Fifteen");
