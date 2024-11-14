@@ -36,18 +36,12 @@ public class TennisGame1 implements TennisGame {
     }
 
     private void getCurrentScore(StringBuilder score) {
-        int tempScore;
-        for (int i = 1; i < 3; i++) {
-            if (i == 1) tempScore = m_score1;
-            else {
-                score.append("-");
-                tempScore = m_score2;
-            }
-            extracted(score, tempScore);
-        }
+        getPlayerScoreStringBuilder(score, m_score1);
+        score.append("-");
+        getPlayerScoreStringBuilder(score, m_score2);
     }
 
-    private static void extracted(StringBuilder score, int tempScore) {
+    private static void getPlayerScoreStringBuilder(StringBuilder score, int tempScore) {
         switch (tempScore) {
             case 0 -> score.append("Love");
             case 1 -> score.append("Fifteen");
