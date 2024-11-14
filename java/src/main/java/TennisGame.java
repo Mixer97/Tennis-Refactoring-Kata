@@ -1,5 +1,5 @@
 
 public interface TennisGame {
-    void wonPoint(String playerName);
+    void addPoint(String playerName);
     String getScoreString();
 }

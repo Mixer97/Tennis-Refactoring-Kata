@@ -11,7 +11,7 @@ public class TennisGame4 implements TennisGame {
     }
 
     @java.lang.Override
-    public void wonPoint(String playerName) {
+    public void addPoint(String playerName) {
         if (server.equals(playerName))
             this.serverScore += 1;
         else

@@ -13,7 +13,7 @@ public class TennisGame1 implements TennisGame {
     }
 
     // Point set method
-    public void wonPoint(String playerName) {
+    public void addPoint(String playerName) {
         if (playerName.equals(player1Name))
             m_score1 += 1;
         else
@@ -34,6 +34,30 @@ public class TennisGame1 implements TennisGame {
         return score.toString();
     }
 
+    private StringBuilder getScoreWinString(int minusResult) {
+        StringBuilder score;
+        score = new StringBuilder(switch (minusResult) {
+            case 1 -> "Advantage ".concat(player1Name);
+            case -1 -> "Advantage ".concat(player2Name);
+            default -> {
+                if (minusResult >= 2) yield "Win for ".concat(player1Name);
+                else yield "Win for ".concat(player2Name);
+            }
+        });
+        return score;
+    }
+
+    private StringBuilder getScoreParityString() {
+        StringBuilder score;
+        score = new StringBuilder(switch (m_score1) {
+            case 0 -> "Love-All";
+            case 1 -> "Fifteen-All";
+            case 2 -> "Thirty-All";
+            default -> "Deuce";
+        });
+        return score;
+    }
+
     private StringBuilder getScoreNormalCaseString() {
         StringBuilder score = new StringBuilder();
         getPlayerScoreStringBuilder(score, m_score1);
@@ -49,30 +73,5 @@ public class TennisGame1 implements TennisGame {
             case 2 -> score.append("Thirty");
             case 3 -> score.append("Forty");
         }
-    }
-
-    private StringBuilder getScoreWinString(int minusResult) {
-        StringBuilder score;
-        score = new StringBuilder(switch (minusResult) {
-            case 1 -> "Advantage ".concat(player1Name);
-            case -1 -> "Advantage ".concat(player2Name);
-            default -> {
-                if (minusResult >= 2) yield "Win for ".concat(player1Name);
-                else yield "Win for ".concat(player2Name);
-            }
-        });
-        return score;
-    }
-
-
-    private StringBuilder getScoreParityString() {
-        StringBuilder score;
-        score = new StringBuilder(switch (m_score1) {
-            case 0 -> "Love-All";
-            case 1 -> "Fifteen-All";
-            case 2 -> "Thirty-All";
-            default -> "Deuce";
-        });
-        return score;
     }
 }
