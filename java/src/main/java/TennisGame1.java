@@ -43,12 +43,16 @@ public class TennisGame1 implements TennisGame {
                 score.append("-");
                 tempScore = m_score2;
             }
-            switch (tempScore) {
-                case 0 -> score.append("Love");
-                case 1 -> score.append("Fifteen");
-                case 2 -> score.append("Thirty");
-                case 3 -> score.append("Forty");
-            }
+            extracted(score, tempScore);
+        }
+    }
+
+    private static void extracted(StringBuilder score, int tempScore) {
+        switch (tempScore) {
+            case 0 -> score.append("Love");
+            case 1 -> score.append("Fifteen");
+            case 2 -> score.append("Thirty");
+            case 3 -> score.append("Forty");
         }
     }
 
