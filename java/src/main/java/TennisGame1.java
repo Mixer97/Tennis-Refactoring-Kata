@@ -21,20 +21,20 @@ public class TennisGame1 implements TennisGame {
     }
 
     // Point get method
-    public String getScore() {
+    public String getScoreString() {
         StringBuilder score;
         if (m_score1 == m_score2) {
-            score = getParityScore();
+            score = getScoreParityString();
         } else if (m_score1 >= 4 || m_score2 >= 4) {
             int minusResult = m_score1 - m_score2;
-            score = getWinnerScore(minusResult);
+            score = getScoreWinString(minusResult);
         } else {
-            score = getCurrentScore();
+            score = getScoreNormalCaseString();
         }
         return score.toString();
     }
 
-    private StringBuilder getCurrentScore() {
+    private StringBuilder getScoreNormalCaseString() {
         StringBuilder score = new StringBuilder();
         getPlayerScoreStringBuilder(score, m_score1);
         score.append("-");
@@ -51,7 +51,7 @@ public class TennisGame1 implements TennisGame {
         }
     }
 
-    private StringBuilder getWinnerScore(int minusResult) {
+    private StringBuilder getScoreWinString(int minusResult) {
         StringBuilder score;
         score = new StringBuilder(switch (minusResult) {
             case 1 -> "Advantage ".concat(player1Name);
@@ -65,7 +65,7 @@ public class TennisGame1 implements TennisGame {
     }
 
 
-    private StringBuilder getParityScore() {
+    private StringBuilder getScoreParityString() {
         StringBuilder score;
         score = new StringBuilder(switch (m_score1) {
             case 0 -> "Love-All";

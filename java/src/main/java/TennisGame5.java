@@ -24,7 +24,7 @@ public class TennisGame5 implements TennisGame {
     }
 
     @Override
-    public String getScore() {
+    public String getScoreString() {
         int p1 = player1Score;
         int p2 = player2Score;
 

@@ -18,7 +18,7 @@ public class TennisGame6 implements TennisGame {
 
     }
 
-    public String getScore()
+    public String getScoreString()
     {
         String result;
 
