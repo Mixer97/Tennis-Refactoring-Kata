@@ -22,23 +22,24 @@ public class TennisGame1 implements TennisGame {
 
     // Point get method
     public String getScore() {
-        StringBuilder score = new StringBuilder();
-        int tempScore = 0;
+        StringBuilder score;
         if (m_score1 == m_score2) {
             score = getParityScore();
         } else if (m_score1 >= 4 || m_score2 >= 4) {
             int minusResult = m_score1 - m_score2;
             score = getWinnerScore(minusResult);
         } else {
-            getCurrentScore(score);
+            score = getCurrentScore();
         }
         return score.toString();
     }
 
-    private void getCurrentScore(StringBuilder score) {
+    private StringBuilder getCurrentScore() {
+        StringBuilder score = new StringBuilder();
         getPlayerScoreStringBuilder(score, m_score1);
         score.append("-");
         getPlayerScoreStringBuilder(score, m_score2);
+        return score;
     }
 
     private static void getPlayerScoreStringBuilder(StringBuilder score, int tempScore) {
