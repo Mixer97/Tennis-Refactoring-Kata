@@ -28,10 +28,7 @@ public class TennisGame1 implements TennisGame {
             score = getParityScore();
         } else if (m_score1 >= 4 || m_score2 >= 4) {
             int minusResult = m_score1 - m_score2;
-            if (minusResult == 1) score = new StringBuilder("Advantage ".concat(player1Name));
-            else if (minusResult == -1) score = new StringBuilder("Advantage ".concat(player2Name));
-            else if (minusResult >= 2) score = new StringBuilder("Win for ".concat(player1Name));
-            else score = new StringBuilder("Win for ".concat(player2Name));
+            score = getWinningScore(minusResult);
         } else {
             for (int i = 1; i < 3; i++) {
                 if (i == 1) tempScore = m_score1;
@@ -56,6 +53,15 @@ public class TennisGame1 implements TennisGame {
             }
         }
         return score.toString();
+    }
+
+    private StringBuilder getWinningScore(int minusResult) {
+        StringBuilder score;
+        if (minusResult == 1) score = new StringBuilder("Advantage ".concat(player1Name));
+        else if (minusResult == -1) score = new StringBuilder("Advantage ".concat(player2Name));
+        else if (minusResult >= 2) score = new StringBuilder("Win for ".concat(player1Name));
+        else score = new StringBuilder("Win for ".concat(player2Name));
+        return score;
     }
 
     private StringBuilder getParityScore() {
