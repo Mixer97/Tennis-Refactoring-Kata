@@ -57,12 +57,17 @@ public class TennisGame1 implements TennisGame {
 
     private StringBuilder getWinningScore(int minusResult) {
         StringBuilder score;
-        if (minusResult == 1) score = new StringBuilder("Advantage ".concat(player1Name));
-        else if (minusResult == -1) score = new StringBuilder("Advantage ".concat(player2Name));
-        else if (minusResult >= 2) score = new StringBuilder("Win for ".concat(player1Name));
-        else score = new StringBuilder("Win for ".concat(player2Name));
+        score = new StringBuilder(switch (minusResult) {
+            case 1 -> "Advantage ".concat(player1Name);
+            case -1 -> "Advantage ".concat(player2Name);
+            default -> {
+                if (minusResult >= 2) yield "Win for ".concat(player1Name);
+                else yield "Win for ".concat(player2Name);
+            }
+        });
         return score;
     }
+
 
     private StringBuilder getParityScore() {
         StringBuilder score;
