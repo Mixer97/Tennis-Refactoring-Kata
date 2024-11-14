@@ -24,17 +24,17 @@ public class TennisGame1 implements TennisGame {
     public String getScoreString() {
         StringBuilder score;
         if (p1_score == p2_score) {
-            score = getScoreParityString();
+            score = getScoreParity();
         } else if (p1_score >= 4 || p2_score >= 4) {
             int minusResult = p1_score - p2_score;
-            score = getScoreWinString(minusResult);
+            score = getScoreWin(minusResult);
         } else {
-            score = getScoreNormalCaseString();
+            score = getScoreNormalCase();
         }
         return score.toString();
     }
 
-    private StringBuilder getScoreWinString(int minusResult) {
+    private StringBuilder getScoreWin(int minusResult) {
         StringBuilder score;
         score = new StringBuilder(switch (minusResult) {
             case 1 -> "Advantage ".concat(player1Name);
@@ -47,7 +47,7 @@ public class TennisGame1 implements TennisGame {
         return score;
     }
 
-    private StringBuilder getScoreParityString() {
+    private StringBuilder getScoreParity() {
         StringBuilder score;
         score = new StringBuilder(switch (p1_score) {
             case 0 -> "Love-All";
@@ -58,7 +58,7 @@ public class TennisGame1 implements TennisGame {
         return score;
     }
 
-    private StringBuilder getScoreNormalCaseString() {
+    private StringBuilder getScoreNormalCase() {
         StringBuilder score = new StringBuilder();
         getPlayerScoreAndAppend(score, p1_score);
         score.append("-");
