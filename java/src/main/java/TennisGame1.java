@@ -28,34 +28,31 @@ public class TennisGame1 implements TennisGame {
             score = getParityScore();
         } else if (m_score1 >= 4 || m_score2 >= 4) {
             int minusResult = m_score1 - m_score2;
-            score = getWinningScore(minusResult);
+            score = getWinnerScore(minusResult);
         } else {
-            for (int i = 1; i < 3; i++) {
-                if (i == 1) tempScore = m_score1;
-                else {
-                    score.append("-");
-                    tempScore = m_score2;
-                }
-                switch (tempScore) {
-                    case 0:
-                        score.append("Love");
-                        break;
-                    case 1:
-                        score.append("Fifteen");
-                        break;
-                    case 2:
-                        score.append("Thirty");
-                        break;
-                    case 3:
-                        score.append("Forty");
-                        break;
-                }
-            }
+            getCurrentScore(score);
         }
         return score.toString();
     }
 
-    private StringBuilder getWinningScore(int minusResult) {
+    private void getCurrentScore(StringBuilder score) {
+        int tempScore;
+        for (int i = 1; i < 3; i++) {
+            if (i == 1) tempScore = m_score1;
+            else {
+                score.append("-");
+                tempScore = m_score2;
+            }
+            switch (tempScore) {
+                case 0 -> score.append("Love");
+                case 1 -> score.append("Fifteen");
+                case 2 -> score.append("Thirty");
+                case 3 -> score.append("Forty");
+            }
+        }
+    }
+
+    private StringBuilder getWinnerScore(int minusResult) {
         StringBuilder score;
         score = new StringBuilder(switch (minusResult) {
             case 1 -> "Advantage ".concat(player1Name);
